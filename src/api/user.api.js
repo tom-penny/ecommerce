@@ -1,5 +1,9 @@
 import axios from 'axios'
 
+export const getUser = () => {
+    return axios.get('/api/auth/me', { withCredentials: true })
+}
+
 export const registerUser = (firstName, lastName, email, password) => {
     return axios.post('/api/auth/register', { firstName, lastName, email, password }, { withCredentials: true })
 }

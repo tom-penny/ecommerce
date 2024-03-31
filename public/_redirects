@@ -1,0 +1,2 @@
+/api/* http://34.142.37.245:8000/api/:splat 200
+/* /index.html 200

@@ -1,6 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import * as api from '../api/identity.api.js'
 
+export const fetchUser = createAsyncThunk(
+    'users/fetch',
+    async () => {
+        const response = await api.getUser()
+        return response.data
+    }
+)
+
 export const registerUser = createAsyncThunk(
     'users/register',
     async ({ firstName, lastName, email, password }, { rejectWithValue }) => {
@@ -37,6 +45,10 @@ const userSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
+            .addCase(fetchUser.fulfilled, (state, action) => {
+                state.status = 'succeeded'
+                state.userId = action.payload.userId
+            })
             .addCase(registerUser.pending, (state) => {
                 state.status = 'loading'
             })

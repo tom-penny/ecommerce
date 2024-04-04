@@ -3,9 +3,12 @@ import * as api from '../api/order.api.js'
 
 export const checkoutBasket = createAsyncThunk(
     'basket/checkoutBasket',
-    async ({ checkoutId, userId, total, basket }) => {
-        const response = await api.createOrder(checkoutId, userId, total, basket)
-        return response.data
+    async ({ checkoutId, userId, total, basket }, { rejectWithValue }) => {
+        try {
+            const response = await api.createOrder(checkoutId, userId, total, basket)
+            return response.data
+        }
+        catch (err) { return rejectWithValue(err.response.data) }
     }
 )
 

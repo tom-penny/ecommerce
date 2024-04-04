@@ -3,9 +3,12 @@ import * as api from '../api/identity.api.js'
 
 export const fetchUser = createAsyncThunk(
     'users/fetch',
-    async () => {
-        const response = await api.getUser()
-        return response.data
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await api.getUser()
+            return response.data
+        }
+        catch (err) { return rejectWithValue(err.response.data) }
     }
 )
 
@@ -16,7 +19,7 @@ export const registerUser = createAsyncThunk(
             const response = await api.registerUser(firstName, lastName, email, password)
             return response.data
         }
-        catch (err) { return rejectWithValue(err.response.data)}
+        catch (err) { return rejectWithValue(err.response.data) }
     }
 )
 
@@ -27,7 +30,7 @@ export const loginUser = createAsyncThunk(
             const response = await api.loginUser(email, password)
             return response.data
         }
-        catch (err) { return rejectWithValue(err.response.data)}
+        catch (err) { return rejectWithValue(err.response.data) }
     }
 )
 
@@ -45,9 +48,16 @@ const userSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
+            .addCase(fetchUser.pending, (state) => {
+                state.status = 'loading'
+            })
             .addCase(fetchUser.fulfilled, (state, action) => {
                 state.status = 'succeeded'
                 state.userId = action.payload.userId
+            })
+            .addCase(fetchUser.rejected, (state, action) => {
+                state.status = 'failed'
+                state.error = action.payload.message
             })
             .addCase(registerUser.pending, (state) => {
                 state.status = 'loading'

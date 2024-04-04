@@ -3,9 +3,12 @@ import * as api from '../api/category.api.js'
 
 export const fetchCategories = createAsyncThunk(
     'categories/fetchCategories',
-    async () => {
-        const response = await api.getAllCategories()
-        return response.data
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await api.getAllCategories()
+            return response.data
+        }
+        catch (err) { return rejectWithValue(err.response.data) }
     }
 )
 

@@ -11,7 +11,7 @@ export const fetchProducts = createAsyncThunk(
             const response = await api.getAllProducts(page, sort, order)
             return response.data
         }
-        catch (err) { return rejectWithValue(err.response.data)}
+        catch (err) { return rejectWithValue(err.response.data) }
     }
 )
 
@@ -25,7 +25,7 @@ export const fetchProductsByCategory = createAsyncThunk(
             const response = await api.getProductsByCategory(category, page, sort, order)
             return response.data
         }
-        catch (err) { return rejectWithValue(err.response.data)}
+        catch (err) { return rejectWithValue(err.response.data) }
     }
 )
 

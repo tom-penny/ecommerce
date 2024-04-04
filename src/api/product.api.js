@@ -1,9 +1,5 @@
 import axios from 'axios'
 
-export const getAllCategories = () => {
-    return axios.get('/api/categories', { withCredentials: true })
-}
-
 export const getProductById = (id) => {
     return axios.get(`/api/products/${id}`, { withCredentials: true })
 }

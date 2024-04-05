@@ -9,11 +9,12 @@ export const useBasket = () => {
     const basket = useSelector(state => state.basket)
 
     useEffect(() => {
-        dispatch(setBasket(getLocalBasket()))
+        const localBasket = JSON.parse(localStorage.getItem('basket') || '{}')
+        dispatch(setBasket(localBasket))
     }, [dispatch])
 
     const saveChanges = (basket) => {
-        setLocalBasket(basket)
+        localStorage.setItem('basket', JSON.stringify(basket))
         dispatch(setBasket(basket))
     }
 

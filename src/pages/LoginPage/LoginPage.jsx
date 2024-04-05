@@ -6,7 +6,7 @@ import { BarLoader } from 'react-spinners'
 
 import './LoginPage.scss'
 
-export const LoginPage = () => {
+const LoginPage = () => {
     
     const dispatch = useDispatch()
     const navigate = useNavigate()

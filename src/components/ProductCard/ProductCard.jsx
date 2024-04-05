@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 
 import './ProductCard.scss'
 
-export const ProductCard = ({ product }) => {
+const ProductCard = ({ product }) => {
     const navigate = useNavigate()
 
     const handleClick = () => {

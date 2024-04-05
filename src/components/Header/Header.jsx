@@ -38,7 +38,7 @@ const Header = ({ menuOpen, setMenuOpen }) => {
         <div className='header-menu__dropdown'>
             <Link className='header-menu__dropdown-link' to={'/catalogue'}>All Products</Link>
             {categories.map((category) => (
-                <Link className='header-menu__dropdown-link' key={category.id} to={`/catalogue/${category.name}`}
+                <Link className='header-menu__dropdown-link' key={category.id} to={`/catalogue/${category.slug}`}
                     data-test='link-category' data-testid={category.name}>
                     {formatCategory(category.name)}
                 </Link>

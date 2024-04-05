@@ -7,7 +7,8 @@ export const useQueryParams = () => {
     const [queryParams, setParams] = useState(new URLSearchParams(location.search))
 
     useEffect(() => {
-        setParams(new URLSearchParams(location.search))
+        const params = new URLSearchParams(location.search)
+        setParams(Object.fromEntries(params))
     }, [location.search])
 
     const setQueryParams = (path, params) => {
@@ -16,8 +17,6 @@ export const useQueryParams = () => {
         Object.entries(params).forEach(([key, value]) => {
             if (value) newParams.set(key, value)
         })
-
-        setParams(newParams)
 
         navigate({ pathname: path, search: newParams.toString() }, { replace: true })
     }

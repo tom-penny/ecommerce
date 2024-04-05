@@ -36,16 +36,16 @@ const CataloguePage = () => {
 
     return <div className='catalogue-page'>
         <div className='filter-bar'>
-            <select className='filter-bar__selector' value={filters.sort} onChange={handleSortChange} data-test='select-sort'>
+            <select className='filter-bar__selector' value={queryParams.sort} onChange={handleSortChange} data-test='select-sort'>
                 <option value='name'>Name</option>
                 <option value='price'>Price</option>
                 <option value='created'>Date</option>
             </select>
-            <select className='filter-bar__selector' value={filters.order} onChange={handleOrderChange} data-test='select-order'>
+            <select className='filter-bar__selector' value={queryParams.order} onChange={handleOrderChange} data-test='select-order'>
                 <option value='asc'>Ascending</option>
                 <option value='desc'>Descending</option>
             </select>
-            <input className='filter-bar__input' type='text' value={filters.searchTerm}
+            <input className='filter-bar__input' type='text' value={searchTerm}
                 placeholder='Search...' onChange={handleSearchTermChange} data-test='input-search'/>
         </div>
         <div className='product-grid'>

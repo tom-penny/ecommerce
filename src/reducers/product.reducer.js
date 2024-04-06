@@ -4,9 +4,6 @@ import * as api from '../api/product.api.js'
 export const fetchProducts = createAsyncThunk(
     'products/fetchProducts',
     async ({ page, sort, order }, { rejectWithValue }) => {
-        page = page || 1
-        sort = sort || 'name'
-        order = order || 'asc'
         try {
             const response = await api.getAllProducts(page, sort, order)
             return response.data
@@ -18,9 +15,6 @@ export const fetchProducts = createAsyncThunk(
 export const fetchProductsByCategory = createAsyncThunk(
     'products/fetchProductsByCategory',
     async ({ category, page, sort, order }, { rejectWithValue }) => {
-        page = page || 1
-        sort = sort || 'name'
-        order = order || 'asc'
         try {
             const response = await api.getProductsByCategory(category, page, sort, order)
             return response.data
@@ -35,12 +29,7 @@ const productSlice = createSlice({
         products: [],
         count: 0,
         status: 'idle',
-        error: null,
-        filters: {
-            page: null,
-            sort: null,
-            order: null,
-        }
+        error: null
     },
     reducers: {
         setFilters: (state, action) => {

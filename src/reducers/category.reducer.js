@@ -14,7 +14,11 @@ export const fetchCategories = createAsyncThunk(
 
 const categorySlice = createSlice({
     name: 'categories',
-    initialState: { categories: [], status: 'idle', error: null },
+    initialState: {
+        categories: [],
+        status: 'idle',
+        error: null
+    },
     reducers: {},
     extraReducers: (builder) => {
         builder

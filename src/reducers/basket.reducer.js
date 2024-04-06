@@ -14,7 +14,12 @@ export const checkoutBasket = createAsyncThunk(
 
 const basketSlice = createSlice({
     name: 'basket',
-    initialState: { basket: {}, checkoutId: null, status: 'idle', error: null },
+    initialState: {
+        basket: {},
+        checkoutId: null,
+        status: 'idle',
+        error: null
+    },
     reducers: {
         setBasket: (state, action) => {
             state.basket = action.payload

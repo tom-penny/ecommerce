@@ -45,7 +45,8 @@ export const logoutUser = createAsyncThunk(
 const userSlice = createSlice({
     name: 'users',
     initialState: {
-        user: null,
+        userId: null,
+        profile: {},
         status: 'idle',
         error: null
     },
@@ -57,7 +58,8 @@ const userSlice = createSlice({
             })
             .addCase(fetchUser.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                state.user = action.payload
+                state.userId = action.payload.id
+                state.profile = action.payload
             })
             .addCase(fetchUser.rejected, (state, action) => {
                 state.status = 'failed'
@@ -86,6 +88,7 @@ const userSlice = createSlice({
             .addCase(logoutUser.fulfilled, (state) => {
                 state.status = 'succeeded'
                 state.user = null
+                state.profile = {}
             })
     }
 })

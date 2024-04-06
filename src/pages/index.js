@@ -1,3 +1,4 @@
+export { default as AccountPage } from './AccountPage/AccountPage'
 export { default as BasketPage } from './BasketPage/BasketPage'
 export { default as CataloguePage } from './CataloguePage/CataloguePage'
 export { default as HomePage } from './HomePage/HomePage'

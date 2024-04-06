@@ -6,7 +6,7 @@ import useBasket from '../../hooks/useBasket'
 
 import './BasketPage.scss'
 
-export const BasketPage = () => {
+const BasketPage = () => {
     const navigate = useNavigate()
     const { basket } = useSelector(state => state.basket)
     const { incrementQuantity, decrementQuantity } = useBasket()

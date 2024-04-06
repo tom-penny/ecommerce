@@ -1,6 +1,6 @@
 import './HomePage.scss'
 
-export const HomePage = () => {
+const HomePage = () => {
 
     return <div className='home-page'>
     </div>

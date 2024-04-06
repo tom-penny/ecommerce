@@ -1,6 +1,6 @@
 import './NotFoundPage.scss'
 
-export const NotFoundPage = () => {
+const NotFoundPage = () => {
 
     return <div className='not-found-page'>
         <></>

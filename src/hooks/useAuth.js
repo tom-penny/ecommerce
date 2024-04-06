@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
 
-const useAuth = () => {
+export const useAuth = () => {
     
     const navigate = useNavigate()
     const location = useLocation()

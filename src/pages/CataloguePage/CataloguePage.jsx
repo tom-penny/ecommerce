@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { useQueryParams } from '../../hooks/useQuery'
+import { useQueryParams } from '../../hooks/useQueryParams'
 import { fetchProducts, fetchProductsByCategory } from '../../reducers/product.reducer'
 import { Pagination, ProductCard } from '../../components'
 

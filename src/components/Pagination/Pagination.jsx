@@ -1,10 +1,10 @@
 import ReactPaginate from 'react-paginate'
-import { useQueryParams } from '../../hooks/useQuery'
+import { useQueryParams } from '../../hooks/useQueryParams'
 
 import './Pagination.scss'
 
 const Pagination = ({ basePath, totalCount }) => {
-    
+
     const [queryParams, setQueryParams] = useQueryParams()
     const currentPage = parseInt(queryParams.page || '1')
     const pageCount = Math.ceil(totalCount / 12)

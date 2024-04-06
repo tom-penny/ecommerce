@@ -44,7 +44,11 @@ export const logoutUser = createAsyncThunk(
 
 const userSlice = createSlice({
     name: 'users',
-    initialState: { userId: null, profile: null, status: 'idle', error: null },
+    initialState: {
+        user: null,
+        status: 'idle',
+        error: null
+    },
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -53,7 +57,7 @@ const userSlice = createSlice({
             })
             .addCase(fetchUser.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                state.userId = action.payload.userId
+                state.user = action.payload
             })
             .addCase(fetchUser.rejected, (state, action) => {
                 state.status = 'failed'
@@ -64,7 +68,6 @@ const userSlice = createSlice({
             })
             .addCase(registerUser.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                state.userId = action.payload.userId
             })
             .addCase(registerUser.rejected, (state, action) => {
                 state.status = 'failed'
@@ -75,7 +78,6 @@ const userSlice = createSlice({
             })
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                state.userId = action.payload.userId
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.status = 'failed'
@@ -83,7 +85,7 @@ const userSlice = createSlice({
             })
             .addCase(logoutUser.fulfilled, (state) => {
                 state.status = 'succeeded'
-                state.userId = null
+                state.user = null
             })
     }
 })

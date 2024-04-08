@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { HomePage, BasketPage, NotFoundPage, LoginPage, RegisterPage } from './pages'
-import { AccountPage, CataloguePage } from './pages'
+import { AccountPage, CataloguePage, ProductPage } from './pages'
 import { Header } from './components'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -27,6 +27,7 @@ function App() {
             <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
             <Routes>
                 <Route path='/' element={<HomePage/>}/>
+                <Route path='/products/:productId' element={<ProductPage/>}/>
                 <Route path='/catalogue/:category?' element={<CataloguePage/>}/>
                 <Route path='/basket' element={<BasketPage/>}/>
                 <Route path='/login' element={<LoginPage/>}/>

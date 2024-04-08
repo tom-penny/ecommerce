@@ -54,7 +54,7 @@ export const ProductPage = () => {
                 <div className='product-details__controls'>
                     <button className='product-details__btn' onClick={() => addToBasket(product, quantity)}
                         data-test='add-product'>Add to basket</button>
-                    <QuantityControl quantity={quantity} decrement={() => handleClick(-1)} increment={() => handleClick(1)}/>
+                    <Quantifier quantity={quantity} decrement={() => handleClick(-1)} increment={() => handleClick(1)}/>
                 </div>
             </div>
         </div>

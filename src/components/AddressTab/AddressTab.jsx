@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createAddress, deleteAddress, fetchAddresses } from '../../reducers/address.reducer.js'
 import { BsTrash } from 'react-icons/bs'
 import { BarLoader } from 'react-spinners'
+import { AddressCard } from '../../components'
 import AddressMap from './AddressMap/AddressMap.jsx'
 
 import './AddressTab.scss'

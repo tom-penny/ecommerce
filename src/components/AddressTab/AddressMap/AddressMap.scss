@@ -1,0 +1,12 @@
+.address-map {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+
+    .address-map {
+        flex: 1;
+        padding: 40px;
+    }
+}

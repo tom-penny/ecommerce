@@ -1,4 +1,5 @@
 export { default as AddressCard } from './AddressCard/AddressCard'
+export { default as AddressTab } from './AddressTab/AddressTab'
 export { default as Header } from './Header/Header'
 export { default as OrderTab } from './OrderTab/OrderTab'
 export { default as Pagination } from './Pagination/Pagination'

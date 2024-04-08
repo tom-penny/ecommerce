@@ -1,8 +1,8 @@
 import classNames from 'classnames'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { OrderTab } from '../../components'
-import { IoReceiptOutline } from 'react-icons/io5'
+import { AddressTab, OrderTab } from '../../components'
+import { IoHomeOutline, IoReceiptOutline } from 'react-icons/io5'
 import useAuth from '../../hooks/useAuth'
 
 import './AccountPage.scss'
@@ -14,6 +14,7 @@ const AccountPage = () => {
     const [activeTab, setActiveTab] = useState(0)
 
     const tabs = [
+        { title: 'Addresses', icon: <IoHomeOutline/>, component: <AddressTab userId={userId}/> },
         { title: 'Orders', icon: <IoReceiptOutline/>, component: <OrderTab userId={userId}/> },
     ]
 

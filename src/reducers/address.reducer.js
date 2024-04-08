@@ -14,9 +14,9 @@ export const fetchAddresses = createAsyncThunk(
 
 export const createAddress = createAsyncThunk(
     'addresses/createAddress',
-    async ({ userId, street, city, country, postCode }, { rejectWithValue }) => {
+    async ({ userId, address }, { rejectWithValue }) => {
         try {
-            const response = await api.createAddress(userId, street, city, country, postCode)
+            const response = await api.createAddress(userId, address)
             return response.data
         }
         catch (err) { return rejectWithValue(err.response.data) }

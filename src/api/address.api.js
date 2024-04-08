@@ -4,8 +4,8 @@ export const getAllAddresses = (userId) => {
     return axios.get(`/api/users/${userId}/addresses`, { withCredentials: true })
 }
 
-export const createAddress = (userId, street, city, country, postCode) => {
-    return axios.post(`/api/users/${userId}/addresses`, { userId, street, city, country, postCode }, { withCredentials: true })
+export const createAddress = (userId, address) => {
+    return axios.post(`/api/users/${userId}/addresses`, { ...address }, { withCredentials: true })
 }
 
 export const deleteAddress = (userId, addressId) => {

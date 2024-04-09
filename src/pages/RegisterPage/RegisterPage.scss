@@ -4,3 +4,12 @@
 .register-page {
     @include view;
 }
+
+.form {
+
+    &__names {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+}

@@ -12,6 +12,8 @@ const RegisterPage = () => {
     const location = useLocation()
     const { status, error } = useSelector(state => state.user)
 
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -37,6 +39,12 @@ const RegisterPage = () => {
     return <div className='register-page'>
         <form className='form' onSubmit={handleSubmit}>
         {status === 'failed' && <div className='form__error' data-test='error-message'>{`${error}. Please try again.`}</div>}
+            <div className='form__names'>
+                <input className='form__input form__input--name' type='text' value={firstName} placeholder='First Name'
+                    onChange={(e) => setFirstName(e.target.value)} data-test='input-first'/>
+                <input className='form__input form__input--name' type='text' value={lastName} placeholder='Last Name'
+                    onChange={(e) => setLastName(e.target.value)} data-test='input-last'/>
+            </div>
             <input className='form__input' type='email' value={email} placeholder='Email'
                 onChange={(e) => setEmail(e.target.value)} data-test='input-email'/>
             <input className='form__input' type='password' value={password} placeholder='Password'

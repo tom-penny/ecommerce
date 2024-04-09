@@ -14,10 +14,10 @@ export const fetchUser = createAsyncThunk(
 
 export const registerUser = createAsyncThunk(
     'users/register',
-    async ({ firstName, lastName, email, password }, { rejectWithValue }) => {
+    async ({ firstName, lastName, email, password }, { dispatch, rejectWithValue }) => {
         try {
-            const response = await api.registerUser(firstName, lastName, email, password)
-            return response.data
+            await api.registerUser(firstName, lastName, email, password)
+            return dispatch(fetchUser())
         }
         catch (err) { return rejectWithValue(err.response.data) }
     }
@@ -25,10 +25,10 @@ export const registerUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
     'users/login',
-    async ({ email, password }, { rejectWithValue }) => {
+    async ({ email, password }, { dispatch, rejectWithValue }) => {
         try {
-            const response = await api.loginUser(email, password)
-            return response.data
+            await api.loginUser(email, password)
+            return dispatch(fetchUser())
         }
         catch (err) { return rejectWithValue(err.response.data) }
     }

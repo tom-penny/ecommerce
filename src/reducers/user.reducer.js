@@ -36,9 +36,12 @@ export const loginUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk(
     'users/logout',
-    async () => {
-        await api.logoutUser()
-        document.cookie = 'token' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await api.logoutUser()
+            return response.data
+        }
+        catch (err) { return rejectWithValue(err.response.data) }
     }
 )
 

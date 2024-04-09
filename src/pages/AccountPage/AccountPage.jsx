@@ -8,8 +8,9 @@ import useAuth from '../../hooks/useAuth'
 import './AccountPage.scss'
 
 const AccountPage = () => {
+    
     const isAuthenticated = useAuth()
-    const { userId } = useSelector(state => state.user)
+    const { userId, profile: { firstName } } = useSelector(state => state.user)
 
     const [activeTab, setActiveTab] = useState(0)
 
@@ -21,6 +22,7 @@ const AccountPage = () => {
     if (!isAuthenticated) return null
 
     return <div className='account-page'>
+        <div className='account-page__message'>Welcome back, {firstName}!</div>
         <div className='account-menu'>
             <div className='account-menu__bar'>
                 {tabs.map((tab, index) => (

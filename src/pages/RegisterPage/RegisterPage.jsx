@@ -27,7 +27,7 @@ const RegisterPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        dispatch(registerUser({ email, password }))
+        dispatch(registerUser({ firstName, lastName, email, password }))
     }
 
     const handleClick = (e) => {

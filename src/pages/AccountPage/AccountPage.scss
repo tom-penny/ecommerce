@@ -3,6 +3,11 @@
 .account-page {
     @include view;
     background-color: #F7FCF7;
+
+    &__message {
+        margin: 20px 0;
+        text-align: center;
+    }
 }
 
 .account-menu {

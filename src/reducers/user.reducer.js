@@ -87,7 +87,7 @@ const userSlice = createSlice({
             })
             .addCase(logoutUser.fulfilled, (state) => {
                 state.status = 'succeeded'
-                state.user = null
+                state.userId = null
                 state.profile = {}
             })
     }

@@ -5,8 +5,8 @@ export const useQueryParams = () => {
 
     const location = useLocation()
     const navigate = useNavigate()
-    
-    const [queryParams, setParams] = useState(new URLSearchParams(location.search))
+
+    const [queryParams, setParams] = useState({})
 
     useEffect(() => {
         const params = new URLSearchParams(location.search)

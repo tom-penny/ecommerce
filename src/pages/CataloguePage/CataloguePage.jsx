@@ -24,7 +24,7 @@ const CataloguePage = () => {
     )
 
     useEffect(() => {
-        const { page, sort, order} = queryParams
+        const { page = 1, sort = 'date', order = 'asc'} = queryParams
 
         if (category) {
             dispatch(fetchProductsByCategory({ category, page, sort, order }))

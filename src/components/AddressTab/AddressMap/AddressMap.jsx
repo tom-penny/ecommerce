@@ -27,7 +27,7 @@ const AddressMap = ({ onSelectAddress }) => {
 
         if (!autocomplete.current) return
 
-        const place = autocomplete.current.getPlace()
+        const { result: place } = autocomplete.current.getPlace()
 
         const newCoordinates = {
             lat: place.geometry.location.lat(),

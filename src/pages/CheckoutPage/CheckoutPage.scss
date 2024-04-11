@@ -1,0 +1,19 @@
+@import '../../styles/mixins';
+
+.checkout-page {
+    @include page;
+    @include view;
+}
+
+.checkout-result {
+    text-align: center;
+
+    &__message {
+        font-size: 1.5rem;
+    }
+
+    &__reference {
+        margin-top: 20px;
+        font-size: 0.6rem;
+    }
+}

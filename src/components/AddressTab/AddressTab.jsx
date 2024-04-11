@@ -33,10 +33,12 @@ const AddressTab = ({ userId }) => {
     }
 
     return <div className='address-tab'>
-        <AddressMap onSelectAddress={handleSelectAddress}/>
-        <button className='address-tab__btn' onClick={handleSaveAddress} disabled={status === 'loading'} data-test='save-address'>
-            {status === 'loading' ? <BarLoader loading={true} size={8}/> : 'Save Address'}
-        </button>
+        <div className='address-search'>
+            <AddressMap onSelectAddress={handleSelectAddress}/>
+            <button className='address-tab__btn' onClick={handleSaveAddress} disabled={status === 'loading'} data-test='save-address'>
+                {status === 'loading' ? <BarLoader loading={true} size={8}/> : 'Save Address'}
+            </button>
+        </div>
         <div className='address-list'>
             {status === 'failed' && <div>{error}</div>}
             {addresses.map((address) => (

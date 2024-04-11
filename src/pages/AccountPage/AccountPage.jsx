@@ -22,8 +22,8 @@ const AccountPage = () => {
     if (!isAuthenticated) return null
 
     return <div className='account-page'>
-        <div className='account-page__message'>Welcome back, {firstName}!</div>
         <div className='account-menu'>
+            <div className='account-menu__message'>Welcome back, {firstName}!</div>
             <div className='account-menu__bar'>
                 {tabs.map((tab, index) => (
                     <div className={classNames('account-menu__tab', { 'account-menu__tab--active': activeTab === index })}

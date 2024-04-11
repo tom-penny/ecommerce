@@ -3,11 +3,6 @@
 .account-page {
     @include view;
     background-color: #F7FCF7;
-
-    &__message {
-        margin: 20px 0;
-        text-align: center;
-    }
 }
 
 .account-menu {
@@ -18,6 +13,12 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+
+    &__message {
+        margin: 20px 0;
+        font-size: 1.5rem;
+        text-align: center;
+    }
 
     &__bar {
         display: flex;

@@ -52,7 +52,7 @@ const AddressMap = ({ onSelectAddress }) => {
         <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
             <input className='address-map__input' type='text' placeholder='Search address'/>
         </Autocomplete>
-        <GoogleMap center={{ lat: 54.5260, lng: -3.3086 }} zoom={5}>
+        <GoogleMap center={{ lat: 54.5260, lng: -3.3086 }} zoom={5} mapContainerStyle={{ width: "100%", height: "100%" }}>
             {coordinates && <Marker position={coordinates}/>}
         </GoogleMap>
     </div>

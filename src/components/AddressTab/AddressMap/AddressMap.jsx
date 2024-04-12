@@ -13,9 +13,10 @@ const AddressMap = ({ onSelectAddress }) => {
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
         libraries: ['places']
     })
-
+    
     const [zoom, setZoom] = useState(5)
     const [center, setCenter] = useState({ lat: 54.5260, lng: -3.3086 })
+    const [location, setLocation] = useState(null)
 
     const mapInstance = useRef(null)
     const autocomplete = useRef(null)
@@ -52,8 +53,9 @@ const AddressMap = ({ onSelectAddress }) => {
                 lng: place.geometry.location.lng()
             }
 
-            setCenter(newCoordinates)
             setZoom(mapInstance.current.getZoom())
+            setCenter(newCoordinates)
+            setLocation(newCoordinates)
         }
 
         onSelectAddress({
@@ -71,7 +73,7 @@ const AddressMap = ({ onSelectAddress }) => {
             <input className='address-map__input' type='text' placeholder='Search address'/>
         </Autocomplete>
         <GoogleMap onLoad={onLoadMap} center={center} zoom={zoom} mapContainerStyle={{ width: "100%", height: "100%" }}>
-            {center && <Marker position={center}/>}
+            {location && <Marker position={location}/>}
         </GoogleMap>
     </div>
 }

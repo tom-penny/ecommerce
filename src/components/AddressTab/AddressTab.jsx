@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createAddress, deleteAddress, fetchAddresses } from '../../reducers/address.reducer.js'
 import { BsTrash } from 'react-icons/bs'
-import { BarLoader } from 'react-spinners'
+import { LoadingButton } from '../../components'
 import { AddressCard } from '../../components'
 import AddressMap from './AddressMap/AddressMap.jsx'
 
@@ -35,9 +35,7 @@ const AddressTab = ({ userId }) => {
     return <div className='address-tab'>
         <div className='address-search'>
             <AddressMap onSelectAddress={handleSelectAddress}/>
-            <button className='address-tab__btn' onClick={handleSaveAddress} disabled={status === 'loading'} data-test='save-address'>
-                {status === 'loading' ? <BarLoader loading={true} size={8}/> : 'Save Address'}
-            </button>
+            <LoadingButton className='address-tab__btn' isLoading={status === 'loading'} onClick={handleSaveAddress} data-test='save-address'>Save Address</LoadingButton>
         </div>
         <div className='address-list'>
             {status === 'failed' && <div>{error}</div>}

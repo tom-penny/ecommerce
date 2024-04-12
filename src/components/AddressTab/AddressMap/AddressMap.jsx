@@ -19,27 +19,43 @@ const AddressMap = ({ onSelectAddress }) => {
     const mapInstance = useRef(null)
     const autocomplete = useRef(null)
 
-    const onLoad = useCallback((map) => {
-        mapInstance.current = map
+    const onLoadMap = useCallback((instance) => {
+        mapInstance.current = instance
+    }, [])
+
+
+    const onLoadAutocomplete = useCallback((instance) => {
+        autocomplete.current = instance
     }, [])
 
     const onPlaceChanged = () => {
 
         if (!autocomplete.current) return
 
-        const { result: place } = autocomplete.current.getPlace()
+        const place = autocomplete.current.getPlace()
 
-        const newCoordinates = {
-            lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng()
+        const bounds = new window.google.maps.LatLngBounds()
+
+        if (place.geometry.viewport) {
+            bounds.union(place.geometry.viewport)
+        }
+        else {
+            bounds.extend(place.geometry.location)
         }
 
-        setCoordinates(newCoordinates)
+        if (mapInstance.current) {
+            mapInstance.current.fitBounds(bounds)
 
-        if (mapInstance.current) mapInstance.current.panTo(newCoordinates)
+            const newCoordinates = {
+                lat: place.geometry.location.lat(),
+                lng: place.geometry.location.lng()
+            }
+
+            setCoordinates(newCoordinates)
+        }
 
         onSelectAddress({
-            street: getComponent(place.address_components, 'route'),
+            street: place.name,
             city: getComponent(place.address_components, 'locality'),
             country: getComponent(place.address_components, 'country'),
             postCode: getComponent(place.address_components, 'postal_code')
@@ -49,10 +65,10 @@ const AddressMap = ({ onSelectAddress }) => {
     if (!isLoaded) return <></>
 
     return <div className='address-map'>
-        <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+        <Autocomplete onLoad={onLoadAutocomplete} onPlaceChanged={onPlaceChanged}>
             <input className='address-map__input' type='text' placeholder='Search address'/>
         </Autocomplete>
-        <GoogleMap center={{ lat: 54.5260, lng: -3.3086 }} zoom={5} mapContainerStyle={{ width: "100%", height: "100%" }}>
+        <GoogleMap onLoad={onLoadMap} center={{ lat: 54.5260, lng: -3.3086 }} zoom={5} mapContainerStyle={{ width: "100%", height: "100%" }}>
             {coordinates && <Marker position={coordinates}/>}
         </GoogleMap>
     </div>

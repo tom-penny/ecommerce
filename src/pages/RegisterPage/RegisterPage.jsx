@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { registerUser } from '../../reducers/user.reducer'
-import { BarLoader } from 'react-spinners'
+import { LoadingButton } from '../../components'
 
 import './RegisterPage.scss'
 
@@ -49,9 +49,7 @@ const RegisterPage = () => {
                 onChange={(e) => setEmail(e.target.value)} data-test='input-email'/>
             <input className='form__input' type='password' value={password} placeholder='Password'
                 onChange={(e) => setPassword(e.target.value)} data-test='input-password'/>
-            <button className='form__btn' type='submit' data-test='submit-register'>
-                {status === 'loading' ? <BarLoader loading={true} size={8}/> : 'Register'}
-            </button>
+            <LoadingButton className='form__btn' isLoading={status === 'loading'} type='submit' data-test='submit-register'>Register</LoadingButton>
             <div className='form__prompt'>
                 Got an account? <a href='#' onClick={handleClick}>Log in</a>
             </div>

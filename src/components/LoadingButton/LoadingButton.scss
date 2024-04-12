@@ -1,0 +1,5 @@
+@import '../../styles/mixins';
+
+.loading-button {
+    @include button(#000, #b4ceb7);
+}

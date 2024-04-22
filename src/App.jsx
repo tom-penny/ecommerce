@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { HomePage, BasketPage, NotFoundPage, LoginPage, RegisterPage } from './pages'
 import { AccountPage, CataloguePage, ProductPage, CheckoutPage } from './pages'
-import { Header } from './components'
+import { Header, Footer } from './components'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchUser } from './reducers/user.reducer'
@@ -36,6 +36,7 @@ function App() {
                 <Route path='/checkout' element={<CheckoutPage/>}/>
                 <Route path='/*' element={<NotFoundPage/>}/>
             </Routes>
+            <Footer/>
         </BrowserRouter>
     </div>
 }

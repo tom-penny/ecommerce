@@ -1,12 +1,20 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import * as api from '../api/product.api.js'
 
+const generatePaths = () => {
+    const num = Math.floor(Math.random() * 9) + 1
+    return Array.from({ length: 6 }, (_, i) => `/images/products/${num}-${i + 1}.jpg`)
+}
+
 export const fetchProducts = createAsyncThunk(
     'products/fetchProducts',
     async ({ page, sort, order }, { rejectWithValue }) => {
         try {
             const response = await api.getAllProducts(page, sort, order)
-            return response.data
+            const products = response.data.products.map(product => {
+                return { ...product, images: generatePaths() }
+            })
+            return { ...response.data, products }
         }
         catch (err) { return rejectWithValue(err.response.data) }
     }
@@ -17,7 +25,10 @@ export const fetchProductsByCategory = createAsyncThunk(
     async ({ category, page, sort, order }, { rejectWithValue }) => {
         try {
             const response = await api.getProductsByCategory(category, page, sort, order)
-            return response.data
+            const products = response.data.products.map(product => {
+                return { ...product, images: generatePaths() }
+            })
+            return { ...response.data, products }
         }
         catch (err) { return rejectWithValue(err.response.data) }
     }

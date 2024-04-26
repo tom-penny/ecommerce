@@ -1,32 +1,27 @@
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getProductById } from '../../api/product.api'
 import { useMediaQuery } from 'react-responsive'
 import { Quantifier, ProductSlider } from '../../components'
+import { selectById } from '../../selectors/product.selectors'
+import { fetchProducts } from '../../reducers/product.reducer'
 import useBasket from '../../hooks/useBasket'
 
 import './ProductPage.scss'
 
 export const ProductPage = () => {
-
+    const dispatch = useDispatch()
     const { productId } = useParams()
     const { addToBasket } = useBasket()
+    const product = useSelector(state => selectById(state, productId))
 
     const isMobile = useMediaQuery({ maxWidth: 768 })
 
     const [quantity, setQuantity] = useState(1)
-    const [product, setProduct] = useState(null)
 
     useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const response = await getProductById(productId)
-                setProduct(response.data.product)
-            }
-            catch (err) { }
-        }
-        fetchProduct()
-    }, [productId])
+        if (!product) dispatch(fetchProducts())
+    }, [dispatch, product])
 
     const handleClick = (value) => {
         setQuantity(quantity => {

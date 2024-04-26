@@ -1,2 +1,2 @@
 export const selectById = (state, productId) =>
-    state.products.products.find(p => p.id === productId)
+    state.product.products.find(p => p.id === productId)

@@ -6,7 +6,7 @@ export const useBasket = () => {
     
     const dispatch = useDispatch()
 
-    const basket = useSelector(state => state.basket)
+    const { basket } = useSelector(state => state.basket)
 
     useEffect(() => {
         const localBasket = JSON.parse(localStorage.getItem('basket') || '{}')

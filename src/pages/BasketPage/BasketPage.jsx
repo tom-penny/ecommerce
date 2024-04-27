@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectTotalValue } from '../../selectors/basket.selectors'
-import { Quantifier } from '../../components'
+import { EmptyState, Quantifier } from '../../components'
 import useBasket from '../../hooks/useBasket'
 
 import './BasketPage.scss'
@@ -14,7 +14,11 @@ const BasketPage = () => {
     const total = useSelector(selectTotalValue)
 
     if (Object.keys(basket).length === 0) {
-        return <div>Basket is empty.</div>
+        return <div className='basket-page'>
+            <EmptyState heading='Basket Empty' message='Your basket is empty.'>
+                <button className='basket-page__btn' onClick={() => navigate('/catalogue')}>Shop now</button>
+            </EmptyState>
+        </div>        
     }
 
     const handleNavigate = (productId) => {

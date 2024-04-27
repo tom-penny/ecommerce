@@ -1,0 +1,15 @@
+.empty-state {
+    margin: 0 auto;
+    max-width: 350px;
+    text-align: center;
+    position: relative;
+
+    &__heading {
+        font-size: 2rem;
+    }
+
+    &__message {
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+}

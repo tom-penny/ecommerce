@@ -37,7 +37,7 @@ const LoginPage = () => {
 
     return <div className='login-page'>
         <form className='form' onSubmit={handleSubmit}>
-            {status === 'failed' && <div className='form__error' data-test='error-message'>{`${error}. Please try again.`}</div>}
+            {error && <div className='form__error' data-test='error-message'>{`${error}. Please try again.`}</div>}
             <input className='form__input' type='email' value={email} placeholder='Email'
                 onChange={(e) => setEmail(e.target.value)} data-test='input-email'/>
             <input className='form__input' type='password' value={password} placeholder='Password'

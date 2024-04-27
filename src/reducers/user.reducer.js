@@ -66,7 +66,6 @@ const userSlice = createSlice({
             })
             .addCase(fetchUser.rejected, (state, action) => {
                 state.status = 'failed'
-                state.error = action.payload.message
             })
             .addCase(registerUser.pending, (state) => {
                 state.status = 'loading'

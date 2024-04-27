@@ -38,7 +38,7 @@ const RegisterPage = () => {
 
     return <div className='register-page'>
         <form className='form' onSubmit={handleSubmit}>
-        {status === 'failed' && <div className='form__error' data-test='error-message'>{`${error}. Please try again.`}</div>}
+        {error && <div className='form__error' data-test='error-message'>{`${error}. Please try again.`}</div>}
             <div className='form__names'>
                 <input className='form__input form__input--name' type='text' value={firstName} placeholder='First Name'
                     onChange={(e) => setFirstName(e.target.value)} data-test='input-first'/>

@@ -1,5 +1,6 @@
 export { default as AddressCard } from './AddressCard/AddressCard'
 export { default as AddressTab } from './AddressTab/AddressTab'
+export { default as EmptyState } from './EmptyState/EmptyState'
 export { default as Footer } from './Footer/Footer'
 export { default as Header } from './Header/Header'
 export { default as LoadingButton } from './LoadingButton/LoadingButton'

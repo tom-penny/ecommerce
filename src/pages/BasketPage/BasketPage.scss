@@ -3,6 +3,11 @@
 .basket-page {
     @include view;
     background-color: #F7FCF7;
+
+    &__btn {
+        @include button(#171717, #b4ceb7);
+        max-width: 200px;
+    }
 }
 
 .basket-grid {

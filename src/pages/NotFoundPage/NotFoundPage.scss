@@ -1,5 +1,10 @@
 @import '../../styles/mixins';
 
 .not-found-page {
-    @include page;
+    @include view;
+
+    &__btn {
+        @include button(#171717, #b4ceb7);
+        max-width: 200px;
+    }
 }

@@ -31,7 +31,7 @@ const categorySlice = createSlice({
             })
             .addCase(fetchCategories.rejected, (state, action) => {
                 state.status = 'failed'
-                state.error = action.error.message
+                state.error = action.payload.errors[0]
             })
     }
 })

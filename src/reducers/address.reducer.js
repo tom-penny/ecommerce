@@ -53,7 +53,7 @@ const addressSlice = createSlice({
             })
             .addCase(fetchAddresses.rejected, (state, action) => {
                 state.status = 'failed'
-                state.error = action.error.message
+                state.error = action.payload.errors[0]
             })
             .addCase(createAddress.fulfilled, (state, action) => {
                 state.status = 'succeeded'

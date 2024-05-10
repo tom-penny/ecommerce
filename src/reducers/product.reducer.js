@@ -59,7 +59,7 @@ const productSlice = createSlice({
             })
             .addCase(fetchProducts.rejected, (state, action) => {
                 state.status = 'failed'
-                state.error = action.error.message
+                state.error = action.payload.errors[0]
             })
             .addCase(fetchProductsByCategory.pending, (state) => {
                 state.status = 'loading'
@@ -71,7 +71,7 @@ const productSlice = createSlice({
             })
             .addCase(fetchProductsByCategory.rejected, (state, action) => {
                 state.status = 'failed'
-                state.error = action.error.message
+                state.error = action.payload.errors[0]
             })
     }
 })

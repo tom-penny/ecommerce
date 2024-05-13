@@ -10,12 +10,14 @@ const RegisterPage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
+
     const { status, error } = useSelector(state => state.user)
 
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [message, setMessage] = useState('')
 
     // Return to previous location upon registration.
 
@@ -27,7 +29,9 @@ const RegisterPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        dispatch(registerUser({ firstName, lastName, email, password }))
+        if (validateInput()) {
+            dispatch(registerUser({ firstName, lastName, email, password }))
+        }
     }
 
     const handleClick = (e) => {
@@ -36,9 +40,33 @@ const RegisterPage = () => {
         navigate('/login', { state: { from }})
     }
 
+    const validationRules = [
+        { test: () => !!firstName.trim(), message: 'First Name is required.'},
+        { test: () => !!lastName.trim(), message: 'Last Name is required.'},
+        { test: () => !!email.trim(), message: 'Email is required.'},
+        { test: () => !!password.trim(), message: 'Password is required.'},
+        { test: () => password.length >= 6, message: 'Password length must be at least 6 characters.'},
+        { test: () => /[A-Z]/.test(password), message: 'Password must contain at least one upper case letter.'},
+        { test: () => /[a-z]/.test(password), message: 'Password must contain at least one lower case letter.'},
+        { test: () => /[0-9]/.test(password), message: 'Password must contain at least one number.'},
+        { test: () => /[!@#$%^&*()_+{}:<>?]/.test(password), message: 'Password must contain at least one special character.'}
+    ]
+
+    const validateInput = () => {
+        for (let rule of validationRules) {
+            if (!rule.test()) {
+                setMessage(rule.message)
+                return false
+            }
+        }
+        setMessage('')
+        return true
+    }
+
     return <div className='register-page'>
         <form className='form' onSubmit={handleSubmit}>
         {error && <div className='form__error' data-test='error-message'>{`${error}. Please try again.`}</div>}
+        {message && <div className='form__error' data-test='error-message'>{message}</div>}
             <div className='form__names'>
                 <input className='form__input form__input--name' type='text' value={firstName} placeholder='First Name'
                     onChange={(e) => setFirstName(e.target.value)} data-test='input-first'/>

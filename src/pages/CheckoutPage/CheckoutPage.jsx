@@ -25,7 +25,7 @@ const CheckoutPage = () => {
     }, [dispatch, checkoutId])
 
     const handleClick = () => {
-        dispatch(checkoutBasket({ userId, basket }))
+        dispatch(checkoutBasket({ checkoutId: crypto.randomUUID(), userId, total, basket }))
     }
 
     if (!isAuthenticated) return null
